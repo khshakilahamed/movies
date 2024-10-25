@@ -72,7 +72,7 @@ const Movie = () => {
 
   return (
     <ComponentWrapper className="py-10">
-      <SearchInput setSearchValue={setSearchValue} />
+      <SearchInput setSearchValue={setSearchValue} className="sticky top-24 z-10"/>
 
       {/* Data */}
       {status === "pending" ? (

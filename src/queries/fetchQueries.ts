@@ -1,13 +1,13 @@
 type FetchMoviePropsType = {
-    queryKey: (string | { search: string })[];
-    pageParam: number;
-  };
+  queryKey: (string | { search: string })[];
+  pageParam: number;
+};
 
 export const fetchMovies = async ({
   queryKey,
   pageParam,
 }: FetchMoviePropsType) => {
-    const [, { search }] = queryKey;
+  const [, { search }] = queryKey;
   // console.log(queryKey, pageParam);
 
   const url = search
@@ -22,3 +22,15 @@ export const fetchMovies = async ({
 
   return res.json();
 };
+
+export const fetchWatchList = async () => {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/watchlist`;
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch watch list");
+  }
+
+  return res.json();
+}

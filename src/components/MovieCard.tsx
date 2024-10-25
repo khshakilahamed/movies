@@ -77,7 +77,7 @@ const MovieCard = ({ movie }: { movie: MovieType }) => {
           </Link>
         </div>
         <Link href={`/movie-details/${movie?.id}`}>
-          <h3 className="font-bold md:text-xl mt-2">{movie.title}</h3>
+          <h3 className="font-bold md:text-xl mt-2 hover:underline">{movie.title}</h3>
         </Link>
       </div>
 

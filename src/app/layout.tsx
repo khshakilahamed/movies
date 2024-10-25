@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import { Toaster } from 'react-hot-toast';
+import Navbar from "@/components/Navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <ThemeProvider>
           <QueryProvider>
             <Toaster position="bottom-center" />
+            <Navbar />
             {children}
           </QueryProvider>
         </ThemeProvider>
