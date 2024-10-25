@@ -1,9 +1,9 @@
 "use client";
 
-import { useTheme } from '@/context/ThemeContext';
 import light from "./../assets/light-2.svg";
 import dark from "./../assets/dark.png";
 import Image from 'next/image';
+import { useTheme } from "@/hooks/useTheme";
 
 export default function DarkModeToggle() {
       const { isDarkMode, toggleDarkMode } = useTheme();
