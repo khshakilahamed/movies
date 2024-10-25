@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState } from "react";
 import SearchInput from "./SearchInput";
 import MovieCard from "./MovieCard";
 import { useDebounced } from "@/hooks/useDebounced";
+import ComponentWrapper from "./shared/ComponentWrapper";
+import Spinner from "./ui/Spinner";
 
 const Movie = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -69,65 +71,41 @@ const Movie = () => {
   console.log(data?.pages[0].results);
 
   return (
-    <div className="max-w-screen-xl mx-auto py-10">
+    <ComponentWrapper className="py-10">
       <SearchInput setSearchValue={setSearchValue} />
 
       {/* Data */}
       {status === "pending" ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center min-h-screen">
+          <Spinner />
+        </div>
       ) : status === "error" ? (
         <p>Error: {error.message}</p>
       ) : (
-        <div className="grid grid-cols-4">
+        <div className="space-y-3">
           {data.pages.map((page, i) => (
-            <React.Fragment key={i}>
+            <div className="grid grid-cols-4 gap-3" key={i}>
               {page.results.map((movie: MovieType) => (
                 <MovieCard key={movie?.id} movie={movie} />
               ))}
-            </React.Fragment>
+            </div>
           ))}
+
+          {/* Loader */}
           <div ref={loadingRef}>
-            {isFetchingNextPage
-              ? "Loading more..."
-              : hasNextPage
-              ? "Load More"
-              : "Nothing more to load"}
+            {isFetchingNextPage ? (
+              <Spinner />
+            ) : hasNextPage ? (
+              "Load More"
+            ) : (
+              "Nothing more to load"
+            )}
           </div>
           <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
         </div>
       )}
-    </div>
+    </ComponentWrapper>
   );
 };
 
 export default Movie;
-
-// useEffect(() => {
-//       const fetchMovies = async () => {
-//             const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`);
-//             const data = await res.json();
-
-//             setMovieList(data);
-//             setTotalPage(data?.total_pages)
-//       }
-
-//       const onIntersection = (items) => {
-//             const loaderItem = items[0];
-
-//             if (loaderItem.isIntersecting && (totalPage >= page)) {
-//                   fetchMovies();
-//             }
-//         };
-
-//         const observer = new IntersectionObserver(onIntersection);
-
-//         if (observer && loadingRef.current) {
-//             observer.observe(loadingRef.current);
-//         }
-
-//         // cleanup
-//         return () => {
-//             if (observer) observer.disconnect();
-//         };
-
-// }, [page, totalPage]);

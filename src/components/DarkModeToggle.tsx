@@ -1,9 +1,8 @@
 "use client";
 
-import light from "./../assets/light-2.svg";
-import dark from "./../assets/dark.png";
-import Image from 'next/image';
 import { useTheme } from "@/hooks/useTheme";
+import { MdLightMode } from "react-icons/md";
+import { MdOutlineNightlight } from "react-icons/md";
 
 export default function DarkModeToggle() {
       const { isDarkMode, toggleDarkMode } = useTheme();
@@ -12,7 +11,7 @@ export default function DarkModeToggle() {
             <button
                   onClick={toggleDarkMode}
             >
-                  {isDarkMode ? <Image src={light} alt='light mode' className='w-[30px] h-[30px] text-white' /> : <Image src={dark} alt='dark mode' className='w-[30px] h-[30px]' />}
+                  {isDarkMode ? <MdLightMode className="text-3xl"/> : <MdOutlineNightlight className="text-3xl"/>}
             </button>
       );
 }
