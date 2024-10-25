@@ -68,7 +68,7 @@ const Movie = () => {
     };
   }, [fetchNextPage, hasNextPage]);
 
-  console.log(data?.pages[0].results);
+  // console.log(data?.pages[0].results);
 
   return (
     <ComponentWrapper className="py-10">
@@ -84,7 +84,7 @@ const Movie = () => {
       ) : (
         <div className="space-y-3">
           {data.pages.map((page, i) => (
-            <div className="grid grid-cols-4 gap-3" key={i}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" key={i}>
               {page.results.map((movie: MovieType) => (
                 <MovieCard key={movie?.id} movie={movie} />
               ))}

@@ -11,7 +11,7 @@ export default function DarkModeToggle() {
             <button
                   onClick={toggleDarkMode}
             >
-                  {isDarkMode ? <MdLightMode className="text-3xl"/> : <MdOutlineNightlight className="text-3xl"/>}
+                  {isDarkMode ? <MdLightMode className="text-3xl hover:scale-105 duration-150" title="Light Mode" /> : <MdOutlineNightlight className="text-3xl hover:scale-105 duration-150" title="Dark Mode" />}
             </button>
       );
 }

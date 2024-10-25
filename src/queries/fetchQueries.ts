@@ -8,7 +8,7 @@ export const fetchMovies = async ({
   pageParam,
 }: FetchMoviePropsType) => {
     const [, { search }] = queryKey;
-  console.log(queryKey, pageParam);
+  // console.log(queryKey, pageParam);
 
   const url = search
     ? `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${search}&page=${pageParam}`
