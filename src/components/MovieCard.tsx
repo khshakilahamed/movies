@@ -1,21 +1,19 @@
+"use client";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   addToWatchList,
-  deleteFromWatchList,
-  getFromWatchList,
 } from "@/app/actions/watchListActions";
 import { MovieType } from "@/types/GlobalTypes";
 import { formatNumber } from "@/utils/numberFormat";
 import { FaStar } from "react-icons/fa";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
 import Button from "./ui/Button";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const MovieCard = ({ movie }: { movie: MovieType }) => {
-  const [isInWatchList, setIsInWatchList] = useState<boolean>(false);
+  // const [isInWatchList, setIsInWatchList] = useState<boolean>(false);
   // const [watchListCache, setWatchListCache] = useState<MovieType[]>([]);
 
   // useEffect(() => {
@@ -32,14 +30,14 @@ const MovieCard = ({ movie }: { movie: MovieType }) => {
   const handleAddToWatchList = async (movie: MovieType) => {
     // Optimistic UI update
     // setWatchListCache([...watchListCache, movie]);
-    setIsInWatchList(true);
+    // setIsInWatchList(true);
 
     try {
       await addToWatchList(movie);
       toast.success("Added to the watch list");
     } catch (_error) {
       // setWatchListCache(watchListCache.filter((m) => m.id !== movie.id)); // Revert on failure
-      setIsInWatchList(false);
+      // setIsInWatchList(false);
       toast.error("Failed to add to the watch list");
     }
   };

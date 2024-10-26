@@ -33,13 +33,13 @@ export const fetchWatchList = async () => {
   }
 
   return res.json();
-}
+};
 
 export const removeFromWatchList = async (id: number) => {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/watchlist/${id}`;
 
   const res = await fetch(url, {
-    method: 'DELETE'
+    method: "DELETE",
   });
 
   if (!res.ok) {
@@ -47,4 +47,5 @@ export const removeFromWatchList = async (id: number) => {
   }
 
   return res.json();
-}
+};
+
