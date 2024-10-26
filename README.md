@@ -14,6 +14,7 @@
   - `how to implement`
     - Infinite scrolling is achieved using `tanstack query` and `IntersectionObserver`.
 - Searching
+  - Implemented search functionality using `React Hook Form` for validation.
   - A `debouncer` with a delay of `600ms` is used to minimize extra API calls during search.
   - Infinite scrolling is also applied when searching, utilizing `tanstack query` and `IntersectionObserver`.
 
