@@ -48,7 +48,7 @@ const Movie = () => {
   });
 
   useEffect(() => {
-    const onIntersection = (items: any) => {
+    const onIntersection = (items: IntersectionObserverEntry[]) => {
       const loaderItem = items[0];
 
       if (loaderItem.isIntersecting && hasNextPage) {
