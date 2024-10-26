@@ -109,8 +109,8 @@
 
 - Start the project
 
-```bash
-npm run dev
-// or
-yarn dev
-```
+  ```bash
+  npm run dev
+  // or
+  yarn dev
+  ```
