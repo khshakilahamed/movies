@@ -34,3 +34,17 @@ export const fetchWatchList = async () => {
 
   return res.json();
 }
+
+export const removeFromWatchList = async (id: number) => {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/watchlist/${id}`;
+
+  const res = await fetch(url, {
+    method: 'DELETE'
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete from watch list");
+  }
+
+  return res.json();
+}

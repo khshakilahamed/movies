@@ -1,15 +1,24 @@
-import { NextResponse } from "next/server";
 import { MovieType } from "@/types/GlobalTypes";
+import { readWatchList, writeWatchList } from "@/utils/jsonFileReadWrite";
+import { NextResponse } from "next/server";
 
-export const watchList: Record<number, MovieType> = {};
 
+// GET: Fetch the watchlist
 export async function GET() {
+  const watchList = readWatchList();
   return NextResponse.json(Object.values(watchList));
 }
 
+// POST: Add a movie to the watchlist
 export async function POST(request: Request) {
   const movie: MovieType = await request.json();
+  const watchList = readWatchList();
+
+  // Add the new movie to the watchlist
   watchList[movie.id] = movie;
-//   console.log(watchList);
+
+  // Save the updated watchlist
+  writeWatchList(watchList);
+
   return NextResponse.json(Object.values(watchList));
 }

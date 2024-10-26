@@ -3,20 +3,31 @@
 import ComponentWrapper from "@/components/shared/ComponentWrapper";
 import Button from "@/components/ui/Button";
 import Spinner from "@/components/ui/Spinner";
-import { fetchWatchList } from "@/queries/fetchQueries";
+import { fetchWatchList, removeFromWatchList } from "@/queries/fetchQueries";
 import { MovieType } from "@/types/GlobalTypes";
 import { formatNumber } from "@/utils/numberFormat";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const WatchList = () => {
 
-      const { data: watchList, isPending } = useQuery({ queryKey: ['watch-list'], queryFn: fetchWatchList });
+      // Fetch data
+      const { data: watchList, isPending, refetch } = useQuery({ queryKey: ['watch-list'], queryFn: fetchWatchList });
 
-      console.log(watchList);
+      // remove data
+      const mutation = useMutation({
+            mutationFn: removeFromWatchList,
+            onSuccess: () => {
+                  // Refetch the watchlist after successfully removing a movie
+                  refetch();
+                  toast.success("Successfully deleted from watch list");
+            }
+
+      });
 
       return (
             <ComponentWrapper>
@@ -27,7 +38,7 @@ const WatchList = () => {
                   }
                   <div className="my-10 flex flex-col gap-3">
                         {
-                              watchList?.map((movie: MovieType) => <div key={movie?.id} className="border border-gray-300 dark:border p-2">
+                              watchList?.length ? watchList?.map((movie: MovieType) => <div key={movie?.id} className="border border-gray-300 dark:border p-2">
                                     <div className="flex gap-5">
                                           <Link href={`/movie-details/${movie?.id}`}>
                                                 <Image
@@ -52,14 +63,14 @@ const WatchList = () => {
                                                 {/* Action Buttons */}
                                                 <Button
                                                       title="Remove from watch list"
-                                                // onClick={() => handleDeleteFromWatchList(movie?.id)}
+                                                      onClick={() => mutation.mutate(movie?.id)}
                                                 >
                                                       <RiDeleteBin6Line className="text-3xl text-red-500" />
                                                 </Button>
                                           </div>
 
                                     </div>
-                              </div>)
+                              </div>) : <p className="text-center">No data available</p>
                         }
                   </div>
             </ComponentWrapper>

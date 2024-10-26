@@ -16,50 +16,50 @@ import Link from "next/link";
 
 const MovieCard = ({ movie }: { movie: MovieType }) => {
   const [isInWatchList, setIsInWatchList] = useState<boolean>(false);
-  const [watchListCache, setWatchListCache] = useState<MovieType[]>([]);
+  // const [watchListCache, setWatchListCache] = useState<MovieType[]>([]);
 
-  useEffect(() => {
-    // Check if the movie is already in the watchlist
-    const fetchWatchList = async () => {
-      const data = await getFromWatchList();
-      setWatchListCache(data);
-      setIsInWatchList(data.some((m: MovieType) => Number(m.id) === movie.id));
-    };
+  // useEffect(() => {
+  //   // Check if the movie is already in the watchlist
+  //   const fetchWatchList = async () => {
+  //     const data = await getFromWatchList();
+  //     setWatchListCache(data);
+  //     setIsInWatchList(data.some((m: MovieType) => Number(m.id) === movie.id));
+  //   };
 
-    fetchWatchList();
-  }, [movie.id]);
+  //   fetchWatchList();
+  // }, [movie.id]);
 
   const handleAddToWatchList = async (movie: MovieType) => {
     // Optimistic UI update
-    setWatchListCache([...watchListCache, movie]);
+    // setWatchListCache([...watchListCache, movie]);
     setIsInWatchList(true);
 
     try {
       await addToWatchList(movie);
       toast.success("Added to the watch list");
     } catch (_error) {
-      setWatchListCache(watchListCache.filter((m) => m.id !== movie.id)); // Revert on failure
+      // setWatchListCache(watchListCache.filter((m) => m.id !== movie.id)); // Revert on failure
       setIsInWatchList(false);
       toast.error("Failed to add to the watch list");
     }
   };
 
-  const handleDeleteFromWatchList = async (id: number) => {
-    const previousWatchList = watchListCache;
+  // const handleDeleteFromWatchList = async (id: number) => {
+  //   const previousWatchList = watchListCache;
 
-    // Optimistic UI update
-    setWatchListCache(watchListCache.filter((m) => m.id !== id));
-    setIsInWatchList(false);
+  //   // Optimistic UI update
+  //   setWatchListCache(watchListCache.filter((m) => m.id !== id));
+  //   setIsInWatchList(false);
 
-    try {
-      await deleteFromWatchList(id);
-      toast.success("Deleted from the watch list");
-    } catch (_error) {
-      setWatchListCache(previousWatchList); // Revert on failure
-      setIsInWatchList(true);
-      toast.error("Failed to delete from the watch list");
-    }
-  };
+  //   try {
+  //     await deleteFromWatchList(id);
+  //     toast.success("Deleted from the watch list");
+  //   } catch (_error) {
+  //     setWatchListCache(previousWatchList); // Revert on failure
+  //     setIsInWatchList(true);
+  //     toast.error("Failed to delete from the watch list");
+  //   }
+  // };
 
   return (
     <div key={movie.id} className="border border-gray-300 dark:border p-2 flex flex-col justify-between h-full">
@@ -92,7 +92,13 @@ const MovieCard = ({ movie }: { movie: MovieType }) => {
         </p>
 
         {/* Action Buttons */}
-        {isInWatchList ? (
+        <Button
+          title="Add to watch list"
+          onClick={() => handleAddToWatchList(movie)}
+        >
+          <MdFavoriteBorder className="text-3xl text-red-500" />
+        </Button>
+        {/* {isInWatchList ? (
           <Button
             title="Remove from watch list"
             onClick={() => handleDeleteFromWatchList(movie?.id)}
@@ -106,7 +112,7 @@ const MovieCard = ({ movie }: { movie: MovieType }) => {
           >
             <MdFavoriteBorder className="text-3xl text-red-500" />
           </Button>
-        )}
+        )} */}
       </div>
     </div>
   );
