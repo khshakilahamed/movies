@@ -2,7 +2,7 @@
 
 - Live Site Link: ClickMe
 
-## What have I done in this project?
+## What have I done this project?
 
 ### Home Page:
 
