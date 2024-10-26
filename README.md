@@ -118,7 +118,7 @@
 
   ```bash
 
-  NEXT_PUBLIC_API_KEY= '<TMDB api key>'
+  NEXT_PUBLIC_API_KEY= 838879a3547b46b2984c093d04fdb2f9
   NEXT_PUBLIC_BASE_URL=http://localhost:3000
   ```
 
