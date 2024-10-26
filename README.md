@@ -83,6 +83,13 @@
   - In the `/tailwind.config.ts` file:
     - The configuration includes `darkMode: 'class'`, allowing background and foreground colors to change dynamically when switching modes.
 
+## What will I do in future?
+
+- Implement authentication using NextAuth for secure user access.
+- Create a database to store user data.
+- Migrate the watchlist from a common JSON file to a user-specific watchlist stored in the database.
+- Personalize the watchlist: When users access the watchlist page, they will only see their own saved movies.
+
 ## Installation Process
 
 - Download or clone the project
