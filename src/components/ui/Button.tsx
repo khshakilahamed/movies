@@ -6,6 +6,7 @@ type ButtonPropsType = {
       className?: string;
       title?: string;
       onClick?: () => void;
+      type?: 'submit' | 'reset' | 'button' | undefined;
 }
 
 const Button = ({ className, title, children, onClick, ...rest }: ButtonPropsType) => {
