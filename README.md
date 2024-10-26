@@ -82,3 +82,35 @@
   - Theme-related styles are defined in the `globals.css` file, with specific classes for Dark mode and Light mode.
   - In the `/tailwind.config.ts` file:
     - The configuration includes `darkMode: 'class'`, allowing background and foreground colors to change dynamically when switching modes.
+
+## Installation Process
+
+- Download or clone the project
+
+  ```bash
+  git clone https://github.com/khshakilahamed/movies.git
+  ```
+
+- Install the Dependencies
+
+  ```bash
+  npm install
+  // or
+  yarn
+  ```
+
+- Configure .env file
+
+  ```bash
+
+  NEXT_PUBLIC_API_KEY= '<TMDB api key>'
+  NEXT_PUBLIC_BASE_URL=http://localhost:3000
+  ```
+
+- Start the project
+
+```bash
+npm run dev
+// or
+yarn dev
+```
