@@ -1,6 +1,14 @@
 ## Important Link
 
-- Live Site Link: ClickMe
+- Live Site Link: [Click Me](https://movies-one-alpha.vercel.app/)
+
+## Important Packages-
+- `tanstack query`
+- `react hook form`
+- `tailwindCSS`
+- `tailwind merge`
+- `react icons`
+- `react hot toast`
 
 ## What have I done this project?
 
