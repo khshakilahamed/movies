@@ -72,7 +72,10 @@ const Movie = () => {
 
   return (
     <ComponentWrapper className="py-10">
-      <SearchInput setSearchValue={setSearchValue} className="sticky top-24 z-10"/>
+      <SearchInput
+        setSearchValue={setSearchValue}
+        className="sticky top-24 z-10"
+      />
 
       {/* Data */}
       {status === "pending" ? (
@@ -84,7 +87,10 @@ const Movie = () => {
       ) : (
         <div className="space-y-3">
           {data.pages.map((page, i) => (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" key={i}>
+            <div
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+              key={i}
+            >
               {page.results.map((movie: MovieType) => (
                 <MovieCard key={movie?.id} movie={movie} />
               ))}
@@ -97,6 +103,8 @@ const Movie = () => {
               <Spinner />
             ) : hasNextPage ? (
               "Load More"
+            ) : debouncedSearchTerm ? (
+              "No data found"
             ) : (
               "Nothing more to load"
             )}

@@ -67,7 +67,7 @@ const MovieCard = ({ movie }: { movie: MovieType }) => {
             <Image
               src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
               width={300}
-              height={300}
+              height={200}
               alt={movie?.title}
               loading="lazy"
               className="w-[300px] h-[200px] md:h-[300px] hover:scale-110 duration-300"
