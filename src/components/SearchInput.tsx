@@ -39,7 +39,7 @@ const SearchInput = ({
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mb-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="mb-5 sticky top-24">
       <div>
         <input
           placeholder="Search here..."
@@ -53,7 +53,7 @@ const SearchInput = ({
 
         <Button
           type="submit"
-          className="bg-gray-600 py-[10px] px-5 rounded-r-md"
+          className="text-white bg-gray-600 dark:bg-gray-400 py-[9px] px-5 rounded-r-md"
         >
           Search
         </Button>
