@@ -39,7 +39,7 @@ const SearchInput = ({
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mb-5 sticky top-24">
+    <form onSubmit={handleSubmit(onSubmit)} className="mb-5 sticky top-24 z-10">
       <div>
         <input
           placeholder="Search here..."
